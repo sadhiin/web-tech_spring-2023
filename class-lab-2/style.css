@@ -1,0 +1,48 @@
+body{
+    background-image: url("img_bg.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+table, th, td {
+    border:1px solid black;
+  }
+.picture img{
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    padding-left: 40%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.picture{
+    background-color: lightslategray;
+}
+.info{
+    flex: auto;
+}
+.summary{
+    height: 100px;
+    background-color: rgb(173, 183, 230);
+    padding-left: 30px;
+    border-radius: 10px;
+}
+.experience{
+    width: 500px;
+    height: 300px;
+    padding-left: 25px;
+    background-color: cadetblue;
+    border-radius: 10px;
+    
+}
+.project{
+    width: 500px;
+    height: 300px;
+    margin-left: 50%;
+    background-color: rgb(161, 83, 235);
+    border-radius: 10px;
+}
+.contract{
+    width: 500px;
+    height: 200px;
+    background-color:rgb(82, 76, 76);
+}

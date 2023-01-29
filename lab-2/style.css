@@ -1,0 +1,38 @@
+body {
+    font-family: 'Merriweather', serif;
+    /* font-family: 'Open Sans', sans-serif; */
+}
+
+.sec-half .welcome {
+    font-size: 35px;
+}
+
+.sec-half .name {
+    font-size: 30px;
+    color: #E55137;
+}
+
+.sec-half .brief-summary {
+    font-size: 20px;
+}
+
+section {
+    display: flex;
+
+}
+
+.sec-1{
+    width: 50%;
+    padding-left: 25px;
+}
+.sec-1 img {
+    width: 100%;
+    border-radius: 50%;
+}
+.experience{
+    width: 400px;
+    height: 300px;
+}
+.sec-half{
+    border: 2px solid rgb(237, 6, 6);
+}
