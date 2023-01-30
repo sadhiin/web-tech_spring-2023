@@ -1,6 +1,7 @@
 body {
     font-family: 'Merriweather', serif;
     /* font-family: 'Open Sans', sans-serif; */
+    background-image: url("./bg.jpg");
 }
 
 .sec-half .welcome {
@@ -17,16 +18,17 @@ body {
 }
 
 section {
+    width: 70%;
     display: flex;
-
+    justify-content:space-evenly;
 }
 
-.sec-1{
+.sec-half{
     width: 50%;
     padding-left: 25px;
 }
 .sec-1 img {
-    width: 100%;
+    width: 50%;
     border-radius: 50%;
 }
 .experience{
@@ -34,5 +36,34 @@ section {
     height: 300px;
 }
 .sec-half{
-    border: 2px solid rgb(237, 6, 6);
+    border: 2px solid rgb(28, 96, 180);
+    background-color: #e9d9e5;
+    border-radius: 10px;
+}
+.sec-1{
+    padding-left: 220px;
+}
+.experience{
+    background-color: #E55137;
+    height:400px;
+    width: 500px;
+    border: 1px solid gainsboro;
+    border-radius: 10px;
+}
+
+.about{
+    width: 300px;
+    height: 40px;
+    background-color: darkorange;
+    padding-left: 50px;
+    border: 2px solid #5ad454;
+    border-radius:10px;
+}
+
+.sec-2{
+    padding-left: 15%;
+}
+
+.resume{
+    margin-left: 100px;
 }
