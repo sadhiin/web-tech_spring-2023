@@ -1,0 +1,102 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .application {
+            width: 1200px;
+            background-color: #d9efeb;
+            margin-top: 50px;
+            margin-left: 150px;
+            padding: 40px;
+        }
+
+        .head {
+            display: flex;
+            padding-left: 100px;
+        }
+
+        .head img {
+            padding-right: 10px;
+        }
+
+        .head h2 {
+            padding-left: 100px;
+        }
+    </style>
+    <title>Admition-Form</title>
+</head>
+
+<body>
+    <!-- https://www.jotform.com/build/230325003601436 -->
+
+    <div class="application">
+        <div class="head">
+            <img src="American_International_University-Bangladesh_Monogram.svg.png" alt="aiub" width="120px"
+                height="120px">
+            <h2>
+                American Internation University-Bangladeshe (AIUB)
+                <span><br></span>
+                Scholarship Application Form
+            </h2>
+        </div>
+        <form action="/action.html" class="main-form" method="POST" autocomplete="on">
+            <fieldset id="personal">
+                <legend>Personal-Details</legend>
+                <label for="name">Name</label><br>
+                <input type="text" name="fname" id="fname" value="" required size="50">
+                <input type="text" name="lname" id="lname" value="" required size="50">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" size="30" placeholder="username@domain.com" required> <br>
+                <small style="padding-right: 27%;">First name</small> <small>Last name</small>
+                <br>
+                <label for="contract">Phone Number</label><br>
+                <input type="text" name="contract-area" id="area" value="+880" readonly size="2">-<input type="tel"
+                    name="contract" id="contract-number" required size="11" maxlength="10">
+
+                <label for="dob">Date of Birth</label>
+                <input type="date" name="dob" id="dob">
+                <br>
+                <br>
+                <label for="address">Address</label><br>
+                <input type="text" name="address" id="address"><br>
+                <small>Streat Address</small><br>
+                <input type="text" name="address" id="address"><br>
+                <small>Streat Address-2</small><br>
+            </fieldset>
+            <fieldset>
+                <legend>Academic Information</legend>
+
+                <label for="grade">Grade of Year Level</label><br>
+                <input type="text" name="grade" id="grade">
+
+                <label for="gpa">Latest GPA Score</label>
+                <input type="number" name="gpa" id="gpa">
+                <br><br>
+                <label for="credit">Credit Complete</label>
+                <br>
+                <input type="number" name="credit" id="credit">
+
+                <label for="exp">Date Expected to Graduate</label>
+                <input type="date" name="exp" id="exp">
+                <br><br>
+                <label for="org">Are you a member of any organization in your school? Please provide information
+                </label><br><br>
+                <textarea name="org" id="org" cols="30" rows="10"></textarea>
+                <br><br>
+                <label for="otuside">Are you a member of any organization outside your school? Please provide
+                    information
+                </label><br><br>
+                <textarea name="otuside" id="otuside" cols="30" rows="10"></textarea>
+            </fieldset>
+
+            <center>
+                <input style="border: 2px solid rgb(31, 16, 119); border-radius: 3px; text-align:center; " type="submit" name="submit" id="btn-submit">
+            </center>
+        </form>
+    </div>
+</body>
+
+</html>
