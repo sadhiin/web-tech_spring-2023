@@ -1,0 +1,6 @@
+name: 1. can't empty
+2. at least two word
+3. stat with letter
+4. cna contain a-z,A-Z period dash only
+
+Email: 
