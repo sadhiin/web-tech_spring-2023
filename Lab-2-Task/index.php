@@ -1,3 +1,4 @@
+<!DOCTYPE HTML>
 <html lang="en">
 
 <head>
@@ -16,7 +17,7 @@
 
     <?php
     $nameErr = $emailErr = $doberr = $genderErr = $degreerr = $bloodErr = "";
-    $name = $email = $birth = $gender = $degree = $blood = "";
+    $name = $email = $dob = $gender = $degree = $blood = "";
     // name validation
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (empty($_POST['name'])) {
@@ -60,16 +61,15 @@
 
     // Degree validation
     if (isset($_POST["degree"])) {
-        if(count($_POST['degree']) < 2){
+        if (count($_POST['degree']) < 2) {
             $degreerr = "Must be checked more then one";
-        }
-        else{
-            $degree ="";
-            $c=count($_POST['degree']);
-            for($i=0; $i<$c-1; $i++){
-                $degree .=($_POST['degree'][$i] .' and ');
+        } else {
+            $degree = "";
+            $c = count($_POST['degree']);
+            for ($i = 0; $i < $c - 1; $i++) {
+                $degree .= ($_POST['degree'][$i] . ' and ');
             }
-            $degree .= $_POST['degree'][$c-1];
+            $degree .= $_POST['degree'][$c - 1];
         }
     } else {
         $degreerr = "Degree must be filled up.";
@@ -105,7 +105,8 @@
         </span>
 
         <p>Your Email: </p>
-        <input type="text" name="email" id="email"> <span class="error">*
+        <input type="text" name="email" id="email">
+        <span class="error">*
             <?php echo $emailErr; ?>
         </span>
 
@@ -119,6 +120,9 @@
         <label for="female">Female</label>
         <input type="radio" name="gen" id="other" value="other">
         <label for="other">Other</label>
+        <span class="error">*
+            <?php echo $genderErr; ?>
+        </span>
 
         <p>Degree</p>
         <input type="checkbox" name="degree[]" id="ssc" value="ssc">
@@ -131,6 +135,9 @@
         <label for="bsc">BSc</label>
         <input type="checkbox" name="degree[]" id="msc" value="msc">
         <label for="msc">MSc</label>
+        <span class="error">*
+            <?php echo $degreerr; ?>
+        </span>
         <br>
 
         <p>Blood Group</p>
@@ -145,6 +152,9 @@
             <option value="O+">O(+ev)</option>
             <option value="O-">O-(neg)</option>
         </Select>
+        <span class="error">*
+            <?php echo $bloodErr; ?>
+        </span>
         <br>
         <input type="submit" value="submit">
     </form>
@@ -155,17 +165,21 @@
     <!-- Showing the inputs -->
     <?php
     // Showing the data
-    echo "<h1> Inputed Value </h1>";
-    echo "Name: " . $name . "<br>";
-    echo "Email: " . $email . "<br>";
-    // echo "DOB: " . $dob . " " . gettype($dob) . " " . $dob[5] . "<br>";
-    echo "DOB: " . $dob . " " . "<br>";
-    echo "Gender: " . $gender . "<br>";
-    echo "Degree: " . $degree . "<br>";
-    echo "Blood group: " . $blood . "<br>";
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        echo "<h1> Inputed Value </h1>";
+        echo "Name: " . $name . "<br>";
+        echo "Email: " . $email . "<br>";
+        // echo "DOB: " . $dob . " " . gettype($dob) . " " . $dob[5] . "<br>";
+        echo "DOB: " . $dob . " " . "<br>";
+        echo "Gender: " . $gender . "<br>";
+        echo "Degree: " . $degree . "<br>";
+        echo "Blood group: " . $blood . "<br>";
 
-    // Next file handling. opne read, creating, handling
-    // next weak theory: Quiz-1
+        // Next file handling. opne read, creating, handling
+        // next weak theory: Quiz-1
+    }
+
+
     ?>
 </body>
 
