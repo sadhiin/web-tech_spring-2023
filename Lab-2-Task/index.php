@@ -111,7 +111,10 @@
         </span>
 
         <p>Date of Birth </p>
-        <input type="date" name="dob" id="dob"> <span class="error">*</span>
+        <input type="date" name="dob" id="dob">
+        <span class="error">*
+            <?php echo $doberr; ?>
+        </span>
 
         <p>Gender </p>
         <input type="radio" name="gen" id="male" value="male">
