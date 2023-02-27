@@ -45,7 +45,7 @@
                         echo 'Login as <a href= "E_dashboard.ph">'. $_SESSION['name']."</a>";
                     }
                     else{
-                        echo '<a href="Login.php">Login</a>';
+                        echo '<a href="C_login.php">Login</a>';
                         echo '<a href="B_registation.php">Registation</a>';
                     }
                 ?>
