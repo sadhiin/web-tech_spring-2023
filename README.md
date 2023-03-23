@@ -19,6 +19,7 @@ American International University-Bangladesh
   + [Task-3 Profilepicture](https://github.com/sadhiin/web-tech_spring-2023/blob/main/Lab-3-Task/Profile.php)
   + [Task-4 Registation with Jsondata](https://github.com/sadhiin/web-tech_spring-2023/blob/main/Lab-3-Task/registation.php)
 
-+ [Lab-Task-4](https://github.com/sadhiin/web-tech_spring-2023)
++ [Lab-Task-4](https://github.com/sadhiin/web-tech_spring-2023/tree/main/Lab-4-task)
 
-+ Assignment-5
++ [Lab-Task-5](https://github.com/sadhiin/web-tech_spring-2023/tree/main/Lab-4-task)
+
