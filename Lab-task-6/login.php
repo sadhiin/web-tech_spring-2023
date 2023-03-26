@@ -1,7 +1,10 @@
 <?php
+session_start();
 $page_title = "Login";
+$formWidth = "400px";
 include "./includes/header.php";
 ?>
+
 
 <?php
 $username = $password = $message = "";
@@ -52,9 +55,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div>
     <?php
-        if (isset($message)) {
-            echo "$message";
-        }
+    if (isset($message)) {
+        echo "$message";
+    }
     ?>
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
         <label for="username">Username</label>
@@ -67,11 +70,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me
         </label>
-        <!-- <span><a href="#">Forgot password?</a></span> -->
+        <span><a href="./forgotPassword.php">Forgot password?</a></span>
     </form>
 </div>
 
 <?php
 
-    include "./includes/footer.php";
+include "./includes/footer.php";
 ?>

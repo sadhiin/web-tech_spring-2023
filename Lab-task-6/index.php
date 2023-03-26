@@ -1,4 +1,5 @@
 <?php
+session_start();
     $page_title = "Home Page";
     if (!isset($_SESSION['username'])) {
         include "./includes/header.php";

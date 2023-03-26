@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -61,7 +58,7 @@ session_start();
 
         form {
             margin: 50px auto;
-            width: 300px;
+            width: <?php echo $formWidth ?>;
             background-color: #f2f2f2;
             padding: 20px;
             border-radius: 5px;
