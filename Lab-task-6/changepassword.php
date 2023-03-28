@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $currentpassword = $_POST["currentpassword"];
 
-        if ($_SESSION['data']['password'] !== $currentpassword) {
+        if ($_SESSION['data']['pass'] !== $currentpassword) {
             $currentpasswordErr = "Current password is not match";
             $isValid = false;
         }
@@ -53,32 +53,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $retypepassword = $_POST["retypepassword"];
 
         if ($retypepassword != $newpassword) {
-            $retypepasswordErr = "Password is not same as New password";
+            $retypepasswordErr = "New Password should be same";
             $isValid = false;
         }
     }
 
     if ($isValid) {
-        $data = json_decode(file_get_contents('data.json'), true);
-
-        foreach ($data as $key => $value) {
-            if ($value['username'] == $_SESSION['data']['username']) {
-
-                $set = [
-                    'name' => $_SESSION['data']['name'],
-                    'email' => $_SESSION['data']['email'],
-                    'username' => $_SESSION['data']['username'],
-                    'password' => $newpassword,
-                    'gender' => $_SESSION['data']['gender'],
-                    'dob' => $_SESSION['data']['dob'],
-                    'profilepicpath' => $_SESSION['data']['profilepicpath']
-                ];
-                $_SESSION['data'] = $set;
-                $data[$key] = $_SESSION['data'];
-                file_put_contents('data.json', json_encode($data));
-                header('Location: dashboard.php');
-                break;
-            }
+        if (changePassword($_SESSION['username'], $newpassword)) {
+            header('Location: dashboard.php');
+        }
+        else{
+            echo "Issue with password change";
         }
     }
 }
@@ -114,13 +99,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <tr>
                                         <td>Current Password</td>
                                         <td></td>
-                                        <td><input type="text" name="currentpassword" value="<?php echo $currentpassword; ?>">
+                                        <td><input type="password" name="currentpassword" value="<?php echo $currentpassword; ?>">
                                     </tr>
 
                                     <tr>
                                         <td>New Password</td>
                                         <td></td>
-                                        <td><input type="text" name="newpassword" value="<?php echo $newpassword; ?>">
+                                        <td><input type="password" name="newpassword" value="<?php echo $newpassword; ?>">
                                             <span style="color:red">
                                                 <?php echo $newpasswordErr; ?>
                                             </span>
@@ -130,11 +115,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                     <tr>
                                         <td>Retype New Password</td>
                                         <td></td>
-                                        <td><input type="text" name="retypepassword" value="<?php echo $retypepassword; ?>">
-                                        <span style="color:red">
-                                        <?php echo $retypepasswordErr ?>
-                                        </span>
-                                </td>
+                                        <td><input type="password" name="retypepassword" value="<?php echo $retypepassword; ?>">
+                                            <span style="color:red">
+                                                <?php echo $retypepasswordErr ?>
+                                            </span>
+                                        </td>
                                     </tr>
                                 </table>
 

@@ -1,6 +1,6 @@
 <?php
-
 session_start();
+include "model/model.php";
 $target_dir = "uploads/";
 if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
     $ext = substr($_FILES['file_to_upload']['name'], strlen($_FILES['file_to_upload']['name']) - 4, 4);
@@ -9,32 +9,14 @@ if (strpos($_FILES['file_to_upload']['type'], 'image/') !== false) {
     }
     $moving_path = $target_dir . time() . $ext;
     if (move_uploaded_file($_FILES["file_to_upload"]["tmp_name"], $moving_path)) {
-        if ($_SESSION['data']['profilepicpath'] != 'profilepic/1.jpg') {
-            unlink($_SESSION['data']['profilepicpath']);
-        }
-        $data = json_decode(file_get_contents('data.json'), true);
-
-
-        foreach ($data as $key => $value) {
-            if ($value['username'] ==  $_SESSION['data']['username']) {
-
-                $set = [
-                    'name'            => $_SESSION['data']['name'],
-                    'email'           => $_SESSION['data']['email'],
-                    'username'        => $_SESSION['data']['username'],
-                    'password'        => $_SESSION['data']['password'],
-                    'gender'          => $_SESSION['data']['gender'],
-                    'dob'             => $_SESSION['data']['dob'],
-                    'profilepicpath'  => $moving_path
-                ];
-                $_SESSION['data'] = $set;
-                $data[$key] = $_SESSION['data'];
-                file_put_contents('data.json', json_encode($data));
-
+        // if ($_SESSION['data']['img_path'] != 'uploads/profile.png') {
+        //     unlink($_SESSION['data']['img_path']);
+        // } else {
+            if (updateImage($_SESSION['username'], $moving_path)) {
+                $_SESSION['data']['img_path'] = $moving_path;
                 header('Location: viewprofile.php');
-                break;
             }
-        }
+        // }
     } else {
         echo 'failed to upload file';
     }

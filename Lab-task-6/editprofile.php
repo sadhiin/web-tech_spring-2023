@@ -17,15 +17,15 @@ $name = $email = $username = $gender = $dob = "";
 $nameErr = $emailErr = $usernameErr = $genderErr = $dobErr = $message = "";
 $isValid = true;
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
 
     #----- Name -----#
-    if (!isset($_POST['name']) || empty($_POST['name'])) {
+    if (!isset($_GET['name']) || empty($_GET['name'])) {
         $nameErr = "Name is required";
         $isValid = false;
     } else {
-        $name = $_POST['name'];
+        $name = $_GET['name'];
         if (!preg_match("/^[a-zA-Z-' ]*$/", $name)) {
             $nameErr = "Only letters, whitespaces, - and ' are acceptable";
             $isValid = false;
@@ -36,11 +36,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     #----- Email -----#
-    if (!isset($_POST['email']) || empty($_POST["email"])) {
+    if (!isset($_GET['email']) || empty($_GET["email"])) {
         $emailErr = "Email is required";
         $isValid = false;
     } else {
-        $email = $_POST["email"];
+        $email = $_GET["email"];
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $emailErr = "Invalid email format";
             $isValid = false;
@@ -48,11 +48,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     #----- User Name -----#
-    if (!isset($_POST['username']) || empty($_POST['username'])) {
+    if (!isset($_GET['username']) || empty($_GET['username'])) {
         $usernameErr = "User Name is required";
         $isValid = false;
     } else {
-        $username = $_POST['username'];
+        $username = $_GET['username'];
         if (!preg_match("/^[a-zA-Z-0-9' ]*$/", $username)) {
             $usernameErr = "Only letters and white space are allowed";
             $isValid = false;
@@ -63,42 +63,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     #----- Gender -----#
-    if (!isset($_POST['gender']) || empty($_POST['gender'])) {
+    if (!isset($_GET['gender']) || empty($_GET['gender'])) {
         $genderErr = "Gender is required";
         $isValid = false;
     } else {
-        $gender = $_POST['gender'];
+        $gender = $_GET['gender'];
     }
 
     #----- Date of Birth -----#
-    if (!isset($_POST['dob']) || empty($_POST['dob'])) {
+    if (!isset($_GET['dob']) || empty($_GET['dob'])) {
         $dobErr = "Date of Birth is required";
         $isValid = false;
     } else {
-        $dob = $_POST['dob'];
+        $dob = $_GET['dob'];
     }
 
     if ($isValid) {
-        $data = json_decode(file_get_contents('data.json'), true);
-
-        foreach ($data as $key => $value) {
-            if ($value['username'] == $_SESSION['data']['username']) {
-                $set = [
-                    'name'            => $_POST['name'],
-                    'email'            => $_POST['email'],
-                    'username'         => $_SESSION['data']['username'],
-                    'password'         => $_SESSION['data']['password'],
-                    'gender'             => $_POST['gender'],
-                    'dob'             => $_POST['dob'],
-                    'profilepicpath'     => $_SESSION['data']['profilepicpath']
-                ];
-                $_SESSION['data'] = $set;
-
-                $data[$key] = $_SESSION['data'];
-                file_put_contents('data.json', json_encode($data));
-                header('Location:viewprofile.php');
-            }
-        }
+        $data = [
+            'name'            => $_GET['name'],
+            'email'            => $_GET['email'],
+            'username'         => $_SESSION['data']['username'],
+            'password'         => $_SESSION['data']['password'],
+            'gender'             => $_GET['gender'],
+            'dob'             => $_GET['dob'],
+            'img_path'     => $_SESSION['data']['img_path']
+        ];
+        updatePrfile($data);
     }
 }
 
@@ -139,10 +129,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                         <br>
                                         <td></td>
                                         <td><input type="text" name="email" value="<?= $_SESSION['data']['email'] ?>">
-                                        <span style="color:red;">
-                                        <?php echo $emailErr ?>
-                                        </span>
-                                    </td>
+                                            <span style="color:red;">
+                                                <?php echo $emailErr ?>
+                                            </span>
+                                        </td>
                                     </tr>
 
                                     <tr>

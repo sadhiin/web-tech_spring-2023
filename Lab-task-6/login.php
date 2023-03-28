@@ -32,40 +32,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($isValid) {
-        $data = json_decode(file_get_contents('data.json'), true);
+        $data = getUserbyUsename($username);
 
         if (is_array($data)) {
-            $message = "User not found";
-            foreach ($data as $key => $value) {
-                if ($value['username'] == $_POST['username'] && $value['password'] == $_POST['password']) {
-
-                    $_SESSION['data'] = $value;
+            foreach ($data as $k => $v) {
+                if ($v['pass'] == $password) {
+                    $_SESSION['data'] = $v;
                     $_SESSION['username'] = $username;
-                    header("location: dashboard.php");
+                    header("Location: dashboard.php");
                 } else {
                     $message = "Password does not match";
                 }
             }
         } else {
-            $message = "User not found";
+            echo "User not found";
         }
     }
 }
 ?>
 
 <div>
-    <?php
-    if (isset($message)) {
-        echo "$message";
-    }
-    ?>
+
     <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
         <label for="username">Username</label>
         <input type="text" placeholder="Enter Username" name="username">
 
         <label for="password">Password</label>
         <input type="password" placeholder="Enter Password" name="password">
-
+        <?php if (isset($message)) {echo $message."<br>";} ?>
         <input type="submit" class="btn" name="submit" value="Login">
         <label>
             <input type="checkbox" checked="checked" name="remember"> Remember me

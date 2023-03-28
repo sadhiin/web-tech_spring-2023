@@ -34,7 +34,7 @@ if (isset($_SESSION['username'])) {
 								<fieldset style="width: 400px;">
 									<legend><b>Profile Picture</b></legend>
 
-									<img src="<?= $_SESSION['data']['profilepicpath'] ?>" height="200px" width="200px"> <br>
+									<img src="<?php echo $_SESSION['data']['img_path']; ?>" height="220px" width="220px"> <br>
 									<input type="file" name="file_to_upload" value="Choose a file"> <br>
 									<hr> <br>
 									<input type="submit" name="submit">

@@ -3,112 +3,113 @@ session_start();
 $page_title = "Home Page";
 $formWidth = "500px";
 include "./includes/header.php";
-
+include "./model/model.php";
 ?>
 <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
+    }
 
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            display: flex;
-            align-items: center;
-        }
+    header {
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
 
-        nav {
-            margin-left: auto;
-        }
+    nav {
+        margin-left: auto;
+    }
 
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+    }
 
-        nav ul li {
-            margin-left: 20px;
-        }
+    nav ul li {
+        margin-left: 20px;
+    }
 
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
 
-        nav ul li a:hover {
-            text-decoration: underline;
-        }
+    nav ul li a:hover {
+        text-decoration: underline;
+    }
 
-        .logo {
-            display: flex;
-            align-items: center;
-        }
+    .logo {
+        display: flex;
+        align-items: center;
+    }
 
-        .logo img {
-            height: 50px;
-            margin-right: 10px;
-        }
+    .logo img {
+        height: 50px;
+        margin-right: 10px;
+    }
 
-        form {
-            margin: 50px auto;
-            width: 300px;
-            background-color: #f2f2f2;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
+    form {
+        margin: 50px auto;
+        width: 300px;
+        background-color: #f2f2f2;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
 
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 
-        input[type="text"],
-        input[type="password"] {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: none;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        }
+    input[type="text"],
+    input[type="password"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-        input[type="submit"] {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    input[type="submit"] {
+        background-color: #333;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #111;
-        }
+    input[type="submit"]:hover {
+        background-color: #111;
+    }
 
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            font-size: 20px;
-            border: none;
-            border-radius: 5px;
-            padding: 10px;
-            cursor: pointer;
-        }
+    button[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 20px;
+        border: none;
+        border-radius: 5px;
+        padding: 10px;
+        cursor: pointer;
+    }
 
-        .btn {
-            margin-top: 20px;
-            align-self: center;
-        }
+    .btn {
+        margin-top: 20px;
+        align-self: center;
+    }
+
     .container {
         margin: auto;
         width: 70%;
@@ -248,65 +249,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($isValid) {
-        $set = [
+        $users = getAllUsers();
+        foreach ($users as $k => $v) {
+            if ($v['name'] == $_POST['name'] and $v['email'] == $_POST['email']) {
+                echo "User alredy exist";
+                $isValid = false;
+            }
+        }
+    }
+
+    if ($isValid) {
+        // Constracting tha assos array.
+        $data = [
             'name'            => $_POST['name'],
             'email'            => $_POST['email'],
             'username'         => $_POST['username'],
             'password'         => $_POST['password'],
             'gender'             => $_POST['gender'],
             'dob'             => $_POST['dob'],
-            'profilepicpath'     => 'images/avater.png'
+            'image'     => 'uploads/profile.png'
         ];
+        // checking existing user
 
-        if (!file_exists('data.json')) {
-            @file_put_contents('data.json', '');
-        }
-
-        $data = json_decode(file_get_contents('data.json'), true);
-
-        foreach ($data as $key => $value) {
-            if ($value['email'] == $_POST['email'] && $value['username'] == $_POST['username']) {
-                $userExist = "User Already Exist!";
-                break;
-            }
-        }
-        if (empty($userExist)) {
-            $data[] = $set;
-            file_put_contents('data.json', json_encode($data));
-            header('Location: login.php');
-        }
-    }
-
-    if ($isValid) {
-
-        if (file_exists('data.json')) {
-
-            $current_data = file_get_contents('data.json');
-
-            $array_data = json_decode($current_data, true);
-            @$new_data = [
-                'name'        =>     $_POST["name"],
-                'email'        =>     $_POST["email"],
-                'username'    =>      $_POST["username"],
-                'password'    =>      $_POST["password"],
-                'gender'        =>      $_POST["gender"],
-                'dob'        =>       $_POST["dob"]
-            ];
-            $array_data[] = $new_data;
-            $final_data = json_encode($array_data);
-
-            if (file_put_contents('data.json', $final_data)) {
-                $message = "<label class='text-success'>File Appended Successfully</p>";
-            }
+        // creating the new user
+        if (createUser($data)) {
+            echo "Successfully user added.";
         } else {
-            $error = 'JSON File does not exits';
+            echo "Can not create user";
         }
     }
 }
 ?>
+
 <div class="container">
     <h1>Registration Form</h1>
-    <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <label for="fname">First Name</label>
         <input type="text" name="name" placeholder="Your Name" value="<?php echo $name; ?>"><span style="color:red"><?php echo $nameErr ?></span>
 
@@ -337,5 +314,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <?php
-    include "./includes/footer.php";
+include "./includes/footer.php";
 ?>

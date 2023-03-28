@@ -1,3 +1,4 @@
+<?php include "model/model.php";?>
 <!DOCTYPE html>
 <html lang="en">
 

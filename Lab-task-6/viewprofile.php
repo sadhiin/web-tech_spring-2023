@@ -46,7 +46,7 @@ if (isset($_SESSION['username'])) {
                                     <tr>
                                         <td width="25%">Name </td>
                                         <td><?= $_SESSION['data']['name'] ?></td>
-                                        <td rowspan="3" width="100%" align="center"><img src="<?php echo $_SESSION['data']['profilepicpath'] ?>" height="100" width="100"></td>
+                                        <td rowspan="3" width="100%" align="center"><img src="<?php echo $_SESSION['data']['img_path']; ?>" height="220px" width="220px"></td>
                                     </tr>
 
                                     <tr>
