@@ -43,7 +43,7 @@
     Password: <input id="password" type="password" name="password">
     <br>
     <span id="passErr"></span><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Register">
   </form>
 
 </body>
