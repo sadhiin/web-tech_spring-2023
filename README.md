@@ -21,5 +21,6 @@ American International University-Bangladesh
 
 + [Lab-Task-4](https://github.com/sadhiin/web-tech_spring-2023/tree/main/Lab-4-task)
 
-+ [Lab-Task-5](https://github.com/sadhiin/web-tech_spring-2023/tree/main/Lab-4-task)
++ [Lab-Task-5](https://github.com/sadhiin/web-tech_spring-2023/tree/main/Lab-task-5)
 
++ [Lab-Task-6](https://github.com/sadhiin/web-tech_spring-2023/tree/main/Lab-task-6)
