@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script>  
+		function validateform(){  
+		var name=document.myform.name.value;  
+		var password=document.myform.password.value;  
+		  
+		if (name==null || name==""){  
+		  alert("Name can't be blank");  
+		  return false;  
+		}else if(password.length<6){  
+		  alert("Password must be at least 6 characters long.");  
+		  return false;  
+		  }  
+		}
+		function checkName() {
+			if (document.getElementById("name").value == "") {
+			  	document.getElementById("nameErr").innerHTML = "Name can't be blank";
+			  	document.getElementById("name").style.borderColor = "red";
+			}else{
+			  	document.getElementById("nameErr").innerHTML = "";
+			  	document.getElementById("name").style.borderColor = "black";
+
+			}
+			
+        }
+        function checkPass(){
+        	if (document.getElementById("password").value == "") {
+			  	document.getElementById("passErr").innerHTML = "Password can't be blank";
+			  	document.getElementById("password").style.borderColor = "red";
+			}else{
+				document.getElementById("passErr").innerHTML = "";
+			  	document.getElementById("password").style.borderColor = "black";
+			}
+        }
+</script>  
+</head>
+<body>
+<form name="myform" method="post" action="" onsubmit="validateform()" >  
+Name: <input type="text" name="name" id="name" onblur="checkName()" onkeyup="checkName()">
+<p id="nameErr"></p>
+<br/>  
+Password: <input type="password" id="password" name="password" onblur="checkPass()">
+<p id="passErr"></p>
+<br/>  
+<input type="submit" value="register">  
+</form>  
+</body>
+</html>
