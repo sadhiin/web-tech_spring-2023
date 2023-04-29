@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
             'dob'             => $_GET['dob'],
             'img_path'     => $_SESSION['data']['img_path']
         ];
-        updatePrfile($data);
+        updateProfile($data);
     }
 }
 

@@ -86,7 +86,7 @@ function updateImage($username, $newimg){
     return true;
 }
 
-function updatePrfile($data){
+function updateProfile($data){
     $conn = db_conn();
     $EditProfileQuery = "UPDATE lab6 SET name=?,  email=?, pass=?, gender=?, dob=? WHERE username=?";
     try{
