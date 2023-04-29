@@ -2,8 +2,8 @@
 session_start();
 $page_title = "Home Page";
 $formWidth = "500px";
-include "./includes/header.php";
-include "./model/model.php";
+include_once "./includes/header.php";
+include_once "./model/model.php";
 ?>
 <style>
     body {
